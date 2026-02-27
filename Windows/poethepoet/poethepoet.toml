@@ -1,0 +1,20 @@
+[tool.poe.tasks]
+# Add simple tasks here
+
+[tool.poe.tasks.ags]
+help = "Run AllGitStatus."
+cmd = "uvx AllGitStatus"
+cwd = "${POE_PWD}"
+
+[tool.poe.tasks.lg]
+help = "Run lazygit."
+cmd = "${POE_ROOT}/../../../../../Tools/lazygit/lazygit.exe"
+cwd = "${POE_PWD}"
+
+[tool.poe.tasks.rmdir]
+help = "Remove a directory and its descendants."
+script = "shutil:rmtree(dir)"
+cwd = "${POE_PWD}"
+args = [
+    { name = "dir", positional = true, help = "Name of the directory to remove." },
+]
