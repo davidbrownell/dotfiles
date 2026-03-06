@@ -3,4 +3,4 @@ Configuration settings for different operating systems.
 
 ## Installation
 
-Run `uv run install.py`.
+Run `uvx dbrownell_Dotter <configuration files> --var tools_dir=<TOOLS_DIR>`.

@@ -1,0 +1,22 @@
+variable_definitions: {}
+entries:
+  # ----------------------------------------------------------------------
+  # |  clink
+
+  # Copy the environment file so that settings are read locally
+  - source: "clink/clink.env"
+    dest: "{{ tools_dir }}/clink/clink.env"
+
+  # Update the settings file to point to the local agnoster theme
+  - source: null
+    dest: "{{ tools_dir }}/clink/clink_settings"
+    substitutions:
+      - pattern: "(?P<prefix>clink.customprompt\\s*=\\s*)[^\\n]+"
+        replacement: "\\g<prefix>{{ configuration_file_dir | replace('\\\\', '\\\\\\\\') }}\\\\clink\\\\my_agnoster.clinkprompt"
+
+  # ----------------------------------------------------------------------
+  # |  poethepoet
+
+  # Copy the batch file to the tools directory so that it is added to the path
+  - source: "poethepoet/run.cmd.jinja"
+    dest: "{{ tools_dir }}/poethepoet/run.cmd"

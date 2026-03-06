@@ -1,0 +1,9 @@
+@echo off
+
+set POETHEPOET_CONFIG={{ configuration_file_dir }}\poethepoet\poethepoet.toml
+
+echo.
+echo Running via [38;5;12mpoethepoet[0m configured at [38;5;11m%POETHEPOET_CONFIG%[0m...
+echo.
+
+uv tool run --from poethepoet poe -C "%POETHEPOET_CONFIG%" --ansi %*
