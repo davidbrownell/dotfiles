@@ -11,8 +11,8 @@ entries:
   - source: null
     dest: "{{ tools_dir }}/clink/clink_settings"
     substitutions:
-      - pattern: "(?P<prefix>clink.customprompt\\s*=\\s*)[^\\n]+"
-        replacement: "\\g<prefix>{{ configuration_file_dir | replace('\\\\', '\\\\\\\\') }}\\\\clink\\\\my_agnoster.clinkprompt"
+      - pattern: '(?P<prefix>clink.customprompt\s*=\s*)[^\n]+'
+        replacement: '\g<prefix>{{ configuration_file_dir | replace(''\\'', ''\\\\'') }}\\clink\\my_agnoster.clinkprompt'
 
   # ----------------------------------------------------------------------
   # |  poethepoet
