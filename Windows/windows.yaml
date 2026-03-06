@@ -16,7 +16,8 @@ entries:
 
   # ----------------------------------------------------------------------
   # |  poethepoet
+  - source: "poethepoet/poethepoet.toml.jinja"
+    dest: "{{ tools_dir }}/poethepoet/poethepoet.toml"
 
-  # Copy the batch file to the tools directory so that it is added to the path
   - source: "poethepoet/run.cmd.jinja"
     dest: "{{ tools_dir }}/poethepoet/run.cmd"

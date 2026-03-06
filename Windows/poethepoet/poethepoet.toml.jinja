@@ -8,7 +8,7 @@ cwd = "${POE_PWD}"
 
 [tool.poe.tasks.lg]
 help = "Run lazygit."
-cmd = "${POE_ROOT}/../../../../../Tools/lazygit/lazygit.exe"
+cmd = "{{ tools_dir | replace('\\', '/') }}/lazygit/lazygit.exe"
 cwd = "${POE_PWD}"
 
 [tool.poe.tasks.rmdir]
