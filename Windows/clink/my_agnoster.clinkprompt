@@ -22,7 +22,7 @@
 
 -- Features:
 --
---  - Can show a segment with last errorlevel, admin mode, and battery level.
+--  - Can show a segment with admin mode.
 --  - Can show segments for the user and machine.
 --  - Can show a segment for the current virtual env.
 --  - Shows a segment for the current directory.
@@ -52,7 +52,7 @@
 --  "prompt_status prompt_context prompt_virtualenv prompt_dir prompt_git"
 --
 -- The default for AGNOSTER_RPROMPT_SEGMENTS is:
---  "prompt_duration prompt_time"
+--  "prompt_error prompt_duration prompt_battery prompt_time"
 
 
 -- AVAILABLE PROMPT SEGMENTS:
@@ -61,7 +61,8 @@
 --  - prompt_dir:           Display current working directory.
 --  - prompt_error:         Display error indicator when last command failed.
 --  - prompt_git:           Display git branch and status.
---  - prompt_status:        Display admin and battery status.
+--  - prompt_status:        Display admin status.
+--  - prompt_battery:       Display battery level when not fully charged.
 --  - prompt_virtualenv:    Display current virtual environment.
 --  - prompt_time:          Display the day of week and the time.
 --  - prompt_duration:      Display execution time of the previous command.
@@ -177,6 +178,7 @@ defaults.prompt_segments = {
 defaults.rprompt_segments = {
     'prompt_error',
     'prompt_duration',
+    'prompt_battery',
     'prompt_time',
 }
 -- Default colors.
@@ -402,7 +404,6 @@ function ag.prompt_dir()
 end
 
 -- Status:
---  - was there an error
 --  - am I root
 local function sym_sep(sym)
     return (console.cellcount(sym) == 1) and ' ' or ''
@@ -417,24 +418,24 @@ function ag.prompt_status()
     --     local sym = ag.GEAR
     --     symbols = symbols..as_fore(ag.cyan)..sym..sym_sep(sym)
     -- end
-    local batt = os.getbatterystatus()
-    if batt and batt.level and batt.level >= 0 and batt.level < 100 then
-        local sym
-        local batt_color = ((batt.level < 26) and ag.red) or ((batt.level < 71) and ag.yellow) or ag.green
-        if #symbols > 0 then
-            symbols = symbols..as_fore(ag.default)..' '
-        end
-        symbols = symbols..as_fore(batt_color)..tostring(batt.level)
-        if batt.charging then sym = ag.CHARGING
-        elseif batt.acpower then sym = ag.SMARTCHARGING
-        else sym = ag.BATTERY
-        end
-        symbols = symbols..sym..sym_sep(sym)
-    end
 
     if symbols ~= '' then
         symbols = ' '..symbols
         ag.prompt_segment(ag.PRIMARY_FG, ag.default, symbols)
+    end
+end
+
+-- Battery: display battery level when not fully charged
+function ag.prompt_battery()
+    local batt = os.getbatterystatus()
+    if batt and batt.level and batt.level >= 0 and batt.level < 100 then
+        local sym
+        local batt_color = ((batt.level < 26) and ag.red) or ((batt.level < 71) and ag.yellow) or ag.green
+        if batt.charging then sym = ag.CHARGING
+        elseif batt.acpower then sym = ag.SMARTCHARGING
+        else sym = ag.BATTERY
+        end
+        return batt_color, ag.PRIMARY_FG, ' '..tostring(batt.level)..sym..sym_sep(sym)..' '
     end
 end
 
