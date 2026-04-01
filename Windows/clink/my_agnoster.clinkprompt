@@ -435,7 +435,7 @@ function ag.prompt_battery()
         elseif batt.acpower then sym = ag.SMARTCHARGING
         else sym = ag.BATTERY
         end
-        return batt_color, ag.PRIMARY_FG, ' '..tostring(batt.level)..sym..sym_sep(sym)..' '
+        return batt_color, ag.PRIMARY_FG, ' '..tostring(batt.level)..sym..sym_sep(sym)
     end
 end
 
