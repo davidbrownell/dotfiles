@@ -1,27 +1,35 @@
 variable_definitions: {}
 entries:
+  # ----------------------------------------------------------------------
+  # |
+  # |  General
+  # |
+  # ----------------------------------------------------------------------
   - source: "uv.env"
     dest: "{{ tools_dir }}/uv/uv.env"
 
   # ----------------------------------------------------------------------
-  # GenAI
+  # |
+  # |  GenAI
+  # |
+  # ----------------------------------------------------------------------
 
-  # Claude on Windows
+  # ----------------------------------------------------------------------
+  # Windows
   - source: "GenAI/CLAUDE.md"
     dest: "%USERPROFILE%/.claude/CLAUDE.md"
     condition: "is_windows"
 
-  # OpenCode on Windows
   - source: "GenAI/CLAUDE.md"
     dest: "%USERPROFILE%/.config/opencode/agents/ROBOT.md"
     condition: "is_windows"
 
-  # Claude on Linux
+  # ----------------------------------------------------------------------
+  # |  Linux / Not Windows
   - source: "GenAI/CLAUDE.md"
     dest: "~/.claude/CLAUDE.md"
     condition: "not is_windows"
 
-  # OpenCode on Linux
   - source: "GenAI/CLAUDE.md"
     dest: "~/.config/opencode/agents/ROBOT.md"
     condition: "not is_windows"
