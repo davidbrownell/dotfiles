@@ -5,6 +5,9 @@ entries:
   # |  General
   # |
   # ----------------------------------------------------------------------
+  - source: "just/just.env.jinja"
+    dest: "{{ tools_dir }}/just/just.env"
+
   - source: "uv.env"
     dest: "{{ tools_dir }}/uv/uv.env"
 
