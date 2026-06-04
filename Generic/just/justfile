@@ -4,26 +4,30 @@ set shell := ["bash", "-uc"]
 set script-interpreter := ["uv", "run", "--script"]
 
 
+# ----------------------------------------------------------------------
 [doc("Default recipe run when just is invoked without arguments")]
-default:
-    just --list
+_default:
+    @just --list
 
 
+# ----------------------------------------------------------------------
 [doc("Run AllGitStatus")]
 [no-cd]
 ags working_dir='':
-    AllGitStatus {{ working_dir }}
+    @AllGitStatus {{ working_dir }}
 
 
+# ----------------------------------------------------------------------
 [doc("Run lazygit")]
 [no-cd]
 lg:
-    lazygit
+    @lazygit
 
 
+# ----------------------------------------------------------------------
 [doc("Remove stubborn directories")]
-[script]
 [no-cd]
+[script]
 rmdir working_dir:
     import shutil
     shutil.rmtree(r"{{ working_dir }}")
