@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ------------------------------------------------------------------------------
+# Process arguments to determine if the caller requested the global config file
+force_global_config_file=0
+args=()
+
+if [[ "${1:-}" == "global" ]]; then
+    force_global_config_file=1
+    shift
+    args=("$@")
+else
+    args=("$@")
+fi
+
+# ------------------------------------------------------------------------------
+# Use a local configuration file (if it exists) unless the caller has explicitly
+# requested the global configuration file
+global_config_args=()
+
+if [[ "$force_global_config_file" -eq 1 ]] || { [[ ! -f "justfile" ]] && [[ ! -f ".justfile" ]]; }; then
+    global_config_args=(--justfile "{{ configuration_file_dir }}/just/justfile")
+fi
+
+# ------------------------------------------------------------------------------
+# Launch the command
+exec just "${global_config_args[@]}" "${args[@]}"
