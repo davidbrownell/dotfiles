@@ -1,0 +1,28 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+# ------------------------------------------------------------------------------
+# Process arguments to determine if the caller requested the global file
+force_global_file=0
+args=()
+
+if [[ "${1:-}" == "global" ]]; then
+    force_global_file=1
+    shift
+    args=("$@")
+else
+    args=("$@")
+fi
+
+# ------------------------------------------------------------------------------
+# Use a local configuration file (if it exists) unless the caller has explicitly
+# requested the global configuration file
+global_args=()
+
+if [[ "$force_global_file" -eq 1 ]] || { [[ ! -f "TODO.txt" ]]; }; then
+    global_args=("{{ home_dir }}/TODO.txt")
+fi
+
+# ------------------------------------------------------------------------------
+# Launch the command
+exec _tuxedo "${global_args[@]}" "${args[@]}"

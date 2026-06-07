@@ -1,0 +1,49 @@
+@echo off
+SETLOCAL
+
+REM ----------------------------------------------------------------------
+REM Process the arguments and determine if the caller has requested that we use the global file.
+SET _FORCE_GLOBAL_FILE=0
+
+IF "%1"=="global" (
+    SET _FORCE_GLOBAL_FILE=1
+    CALL :PopulateGlobalArgs %*
+) ELSE (
+    REM If here, the "global" arg was not found and we don't need to do any special processing of
+    REM the arguments.
+    SET _ARGS=%*
+)
+
+REM ----------------------------------------------------------------------
+REM Use a local configuration file (if it exists) unless the caller has explicitly requested that
+REM we use the global configuration file.
+SET _GLOBAL_ARGS="{{ home_dir }}\TODO.txt"
+
+IF "%_FORCE_GLOBAL_FILE%"=="0" (
+    IF EXIST "TODO.txt" SET _GLOBAL_ARGS=
+)
+
+REM ----------------------------------------------------------------------
+REM Launch the command
+_tuxedo %_GLOBAL_ARGS% %_ARGS%
+
+REM ----------------------------------------------------------------------
+REM ----------------------------------------------------------------------
+REM ----------------------------------------------------------------------
+:PopulateGlobalArgs
+REM Skip the "global" argument and capture the remaining ones
+SETLOCAL enabledelayedexpansion
+
+SHIFT
+SET "_RESULT="
+
+:ArgLoop
+if "%~1"=="" GOTO :Done
+
+SET "_RESULT=!_RESULT! %1"
+SHIFT
+GOTO :ArgLoop
+
+:Done
+ENDLOCAL & set "_ARGS=%_RESULT%"
+GOTO :EOF

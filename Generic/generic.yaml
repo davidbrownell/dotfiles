@@ -1,4 +1,7 @@
-variable_definitions: {}
+variable_definitions:
+  tools_dir: "String value indicating The directory where tools are stored."
+
+
 entries:
   # ----------------------------------------------------------------------
   # |
@@ -48,4 +51,20 @@ entries:
   # Linux / Not Windows
   - source: "just/run.jinja"
     dest: "{{ tools_dir }}/just/run"
+    condition: not is_windows
+
+  # ----------------------------------------------------------------------
+  # |
+  # |  Tuxedo
+  # |
+  # ----------------------------------------------------------------------
+
+  # Windows
+  - source: "tuxedo/tuxedo.cmd.jinja"
+    dest: "{{ tools_dir }}/tuxedo/tuxedo.cmd"
+    condition: is_windows
+
+  # Linux / Not Windows
+  - source: "tuxedo/tuxedo.jinja"
+    dest: "{{ tools_dir }}/tuxedo/tuxedo"
     condition: not is_windows

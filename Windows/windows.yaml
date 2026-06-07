@@ -1,4 +1,7 @@
-variable_definitions: {}
+variable_definitions:
+  tools_dir: "String value indicating The directory where tools are stored."
+
+
 entries:
   # ----------------------------------------------------------------------
   # |  clink
