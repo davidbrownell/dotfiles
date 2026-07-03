@@ -686,6 +686,21 @@ clink.onbeginedit(function ()
         if last_git_dir ~= git_dir then
             last_git_dir = git_dir
             last_git_info = nil
+
+            -- Set the window's title to the repo
+            local repo_name
+
+            if git_dir == nil then
+                repo_name = "Command Prompt"
+            else
+                -- Get the name of the repo
+                repo_name = git_dir:match("^.+\\([^\\]+)\\.git$")
+
+                -- Escape any potentially dangerous characters
+                repo_name = repo_name:gsub("[\"^&|<>]", "^%0")
+            end
+
+            os.execute('title ' .. repo_name)
         end
     end
     -- Clear cached async_info results.

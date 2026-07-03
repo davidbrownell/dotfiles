@@ -55,6 +55,22 @@ entries:
 
   # ----------------------------------------------------------------------
   # |
+  # |  lazygit
+  # |
+  # ----------------------------------------------------------------------
+
+  # Windows
+  - source: "lazygit/config.yml"
+    dest: "%LOCALAPPDATA%/lazygit/config.yml"
+    condition: is_windows
+
+  # Linux / Not Windows
+  - source: "lazygit/config.yml"
+    dest: "~/.config/lazygit/config.yml"
+    condition: not is_windows
+
+  # ----------------------------------------------------------------------
+  # |
   # |  Tuxedo
   # |
   # ----------------------------------------------------------------------
