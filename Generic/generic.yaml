@@ -13,32 +13,6 @@ entries:
 
   # ----------------------------------------------------------------------
   # |
-  # |  GenAI
-  # |
-  # ----------------------------------------------------------------------
-
-  # ----------------------------------------------------------------------
-  # Windows
-  - source: "GenAI/CLAUDE.md"
-    dest: "%USERPROFILE%/.claude/CLAUDE.md"
-    condition: "is_windows"
-
-  - source: "GenAI/CLAUDE.md"
-    dest: "%USERPROFILE%/.config/opencode/agents/ROBOT.md"
-    condition: "is_windows"
-
-  # ----------------------------------------------------------------------
-  # |  Linux / Not Windows
-  - source: "GenAI/CLAUDE.md"
-    dest: "~/.claude/CLAUDE.md"
-    condition: "not is_windows"
-
-  - source: "GenAI/CLAUDE.md"
-    dest: "~/.config/opencode/agents/ROBOT.md"
-    condition: "not is_windows"
-
-  # ----------------------------------------------------------------------
-  # |
   # |  Just
   # |
   # ----------------------------------------------------------------------
