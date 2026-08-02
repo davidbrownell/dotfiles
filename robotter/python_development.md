@@ -1,4 +1,4 @@
-<!-- Version: 0.1.1 -->
+<!-- Version: 0.2.0 -->
 
 {{ include_configuration("all_development.md") }}
 
@@ -45,5 +45,10 @@ import typer
 from dbrownell_Common.Streams.DoneManager import DoneManager
 from dbrownell_Common import TextwrapEx
 
-from MyPackage import *
+from MyPackage import my_functionality
 ```
+
+## Documentation
+Use these conventions when generating code comments or documentation.
+
+- Generate short docstrings.
