@@ -1,7 +1,8 @@
 ---
 name: code-review
 description: Perform systematic code reviews on files, diffs, PRs, or snippets. Use when the user asks to review code, check a PR, audit a change, find bugs/security issues, or requests a code review. Triggers include review this code, review the PR, code review, audit this change, check for bugs, security review.
-version: 0.1.0
+metadata:
+    version: 0.1.0
 ---
 
 # Code Review
