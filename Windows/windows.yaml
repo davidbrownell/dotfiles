@@ -1,7 +1,6 @@
 variable_definitions:
   tools_dir: "String value indicating The directory where tools are stored."
 
-
 entries:
   # ----------------------------------------------------------------------
   # |  clink
@@ -16,3 +15,8 @@ entries:
     substitutions:
       - pattern: '(?P<prefix>clink.customprompt\s*=\s*)[^\n]+'
         replacement: '\g<prefix>{{ configuration_file_dir | replace(''\\'', ''\\\\'') }}\\clink\\my_agnoster.clinkprompt'
+
+  # ----------------------------------------------------------------------
+  # |  uv
+  - source: "uv.env"
+    dest: "{{ tools_dir }}/uv/uv.env"
