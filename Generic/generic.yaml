@@ -1,15 +1,43 @@
 variable_definitions:
   tools_dir: "String value indicating The directory where tools are stored."
 
-
 entries:
   # ----------------------------------------------------------------------
   # |
-  # |  General
+  # |  git
   # |
   # ----------------------------------------------------------------------
-  - source: "uv.env"
-    dest: "{{ tools_dir }}/uv/uv.env"
+  - name: git configuration
+    commands:
+      - git config --global core.autocrlf false
+      - git config --global commit.gpgSign true
+      - git config --global tag.forceSignAnnotated true
+      - git config --global tag.gpgSign true
+      - git config --global init.defaultBranch main
+      - git config --global pull.rebase true
+      - git config --global fetch.prune true
+
+  - post_install_instructions: |
+      Please manually configure these git settings:
+
+        A) `user.signingKey` - The public GPG key used when signing commits and tags.
+
+           Example: `git config --global user.signingKey <your-gpg-key-id>`
+
+        B) `gpg.program`     - The path to the GPG program used for signing commits and tags.
+
+           Example: `git config --global gpg.program C:/Program Files/GnuPG/bin/gpg.exe`
+
+        C) `[includeIf]`     - Conditional includes for git configuration files.
+
+           Example:
+             [includeIf "gitdir:E:/GitHub/employer_dir/"]
+               	path = E:/GitHub/employer_dir/.gitconfig-include
+
+             E:/GitHub/<employer_dir>/.gitconfig-include:
+                 [user]
+                     email = <employer_email>
+                     signingKey = <employer_gpg_key_id>
 
   # ----------------------------------------------------------------------
   # |
@@ -24,7 +52,8 @@ entries:
 
   # Linux / Not Windows
   - source: "just/run.jinja"
-    dest: "{{ tools_dir }}/just/run"
+    dest: "~/.local/binrun"
+    make_executable: true
     condition: not is_windows
 
   # ----------------------------------------------------------------------
@@ -50,11 +79,12 @@ entries:
   # ----------------------------------------------------------------------
 
   # Windows
-  - source: "tuxedo/tuxedo.cmd.jinja"
-    dest: "{{ tools_dir }}/tuxedo/tuxedo.cmd"
+  - source: "tuxedo/tux.cmd.jinja"
+    dest: "{{ tools_dir }}/tuxedo/tux.cmd"
     condition: is_windows
 
   # Linux / Not Windows
-  - source: "tuxedo/tuxedo.jinja"
-    dest: "{{ tools_dir }}/tuxedo/tuxedo"
+  - source: "tuxedo/tux.jinja"
+    dest: "~/.local/bin/tux"
+    make_executable: true
     condition: not is_windows
