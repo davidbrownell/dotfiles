@@ -10,12 +10,16 @@ entries:
   - name: git configuration
     commands:
       - git config --global core.autocrlf false
-      - git config --global commit.gpgSign true
       - git config --global tag.forceSignAnnotated true
-      - git config --global tag.gpgSign true
       - git config --global init.defaultBranch main
       - git config --global pull.rebase true
       - git config --global fetch.prune true
+
+  - name: git signing key
+    condition: not is_windows
+    commands:
+      - chmod a+x "{{ configuration_file_dir }}/git/generate_git_gpg_key.sh"
+      - "{{ configuration_file_dir }}/git/generate_git_gpg_key.sh"
 
   - post_install_instructions: |
       Please manually configure these git settings:
