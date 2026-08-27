@@ -7,11 +7,11 @@ force_global_file=0
 args=()
 
 if [[ "${1:-}" == "global" ]]; then
-    force_global_file=1
-    shift
-    args=("$@")
+force_global_file=1
+shift
+args=("$@")
 else
-    args=("$@")
+args=("$@")
 fi
 
 # ------------------------------------------------------------------------------
@@ -20,9 +20,9 @@ fi
 global_args=()
 
 if [[ "$force_global_file" -eq 1 ]] || { [[ ! -f "TODO.txt" ]]; }; then
-    global_args=("{{ home_dir }}/TODO.txt")
+global_args=("{{ home_dir }}/TODO.txt")
 fi
 
 # ------------------------------------------------------------------------------
 # Launch the command
-exec _tuxedo "${global_args[@]}" "${args[@]}"
+exec tuxedo "${global_args[@]}" "${args[@]}"
