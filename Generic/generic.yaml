@@ -56,7 +56,7 @@ entries:
 
   # Linux / Not Windows
   - source: "just/run.jinja"
-    dest: "~/.local/binrun"
+    dest: "~/.local/bin/run"
     make_executable: true
     condition: not is_windows
 
