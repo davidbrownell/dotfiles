@@ -56,11 +56,11 @@ entries:
 
   # Linux / Not Windows
   - source: "just/run.jinja"
-    dest: "~/.local/bin/run"0
+    dest: "~/.local/bin/run"
     make_executable: true
     condition: not is_windows
     BugBug: 1
-    
+
   # ----------------------------------------------------------------------
   # |
   # |  lazygit
