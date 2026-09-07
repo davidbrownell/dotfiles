@@ -1,4 +1,4 @@
-<!-- Version: 0.2.0 -->
+<!-- Version: 0.3.0 -->
 
 {{ include_configuration("all_development.md") }}
 
@@ -12,6 +12,11 @@ Use these conventions when writing python code:
 - Function and method names use `PascalCase`.
 - Variables use `snake_case`.
 - Filenames use `snake_case` (but this is not required).
+
+## Type Annotations
+Adhere to these conventions when adding type annotations to python code.
+
+- Do not use `Any` in production code; use `object` instead.
 
 ## Testing
 Use these conventions when writing or exercising tests:
