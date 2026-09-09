@@ -1,4 +1,4 @@
-<!-- Version: 0.3.0 -->
+<!-- Version: 0.4.0 -->
 
 {{ include_configuration("all_development.md") }}
 
