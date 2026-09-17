@@ -1,4 +1,4 @@
-<!-- Version: 0.4.0 -->
+<!-- Version: 0.5.0 -->
 
 {{ include_configuration("all_development.md") }}
 
@@ -17,6 +17,7 @@ Use these conventions when writing python code:
 Adhere to these conventions when adding type annotations to python code.
 
 - Do not use `Any` in production code; use `object` instead.
+- Never introduce `from __future__ import annotations`.
 
 ## Testing
 Use these conventions when writing or exercising tests:
