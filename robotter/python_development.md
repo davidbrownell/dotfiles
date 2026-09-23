@@ -1,9 +1,12 @@
-<!-- Version: 0.6.0 -->
+<!-- Version: 0.7.0 -->
 
 {{ include_configuration("all_development.md") }}
 
 # Python Development
 Adhere to these conventions when writing python code.
+
+## General
+Run `python`-related tasks using `uv`.
 
 ## Naming
 Use these conventions when writing python code:

@@ -7,7 +7,7 @@ Adhere to these principles when writing files.
 Adhere to these architectural principles when planning and writing code.
 
 - Don't Repeat Yourself (DRY)
-- SOLID
+- SOLID design principles
 - Generate the least amount of code possible
 - Never modify code associated with the system under test when writing tests.
 
