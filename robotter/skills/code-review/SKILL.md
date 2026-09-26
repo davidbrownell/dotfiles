@@ -34,7 +34,7 @@ batches. Create `<scratchpad>/checklist-run/results/`.
 
 **3. Fan out, one agent per batch.** Fill the placeholders in `agent_prompt.md` and launch one
 `Agent` call per batch, all in a single message. Each agent gets only its own items, the scope, the
-diff command, and an absolute `{% raw %}{{RESULTS_PATH}}{% endraw %}` of `results/<BATCH_ID>.json`. Do not reduce the
+diff command, and an absolute `{{RESULTS_PATH}}` of `results/<BATCH_ID>.json`. Do not reduce the
 batch set to save tokens — an item not sent is an item the verifier reports as unevaluated.
 
 **4. Verify.** This gates the report.
