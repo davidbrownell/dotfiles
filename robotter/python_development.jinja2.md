@@ -1,4 +1,4 @@
-<!-- Version: 0.7.0 -->
+<!-- python_development Version: 0.8.0 -->
 
 {{ include_configuration("all_development.md") }}
 

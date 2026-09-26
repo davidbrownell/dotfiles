@@ -10,8 +10,7 @@ entries:
     dest: "{{ tools_dir }}/clink/clink.env"
 
   # Update the settings file to point to the local agnoster theme
-  - source: null
-    dest: "{{ tools_dir }}/clink/clink_settings"
+  - dest: "{{ tools_dir }}/clink/clink_settings"
     substitutions:
       - pattern: '(?P<prefix>clink.customprompt\s*=\s*)[^\n]+'
         replacement: '\g<prefix>{{ configuration_file_dir | replace(''\\'', ''\\\\'') }}\\clink\\my_agnoster.clinkprompt'

@@ -1,4 +1,3 @@
-{% raw %}
 # Batch Agent Prompt Template
 
 The parent fills every `{{…}}` placeholder and passes the result as the `prompt` to one `Agent` call
@@ -65,4 +64,3 @@ batch by ID.
 
 Then reply with a single line: `Batch {{BATCH_ID}}: wrote N records to <path>`. Do not restate the
 results — the file is the result.
-{% endraw %}
