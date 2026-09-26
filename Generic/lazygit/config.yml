@@ -1,10 +1,9 @@
 git:
-  pagers:
-    - externalDiffCommand: difft --color=always --display side-by-side
-
+  diffRenderers:
+    - command: difft --color=always --display side-by-side
+      type: extDiff
 gui:
   showFileTree: false
   sidePanelWidth: 0.2
-
 os:
   edit: code "{{filename}}"
