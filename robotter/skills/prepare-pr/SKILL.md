@@ -42,7 +42,7 @@ If the current branch is mainline, create and switch to a new branch named `<slu
 
 ## Step 4 - Describe the change
 
-It is important to preserve what was changed and why the change was made. Write `docs/changes/<datetime>_<slug>.md` according to the [Open Knowledge Foundation (OKF) change file format](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf). Attempt to derive all necessary information from information in the source code, but interview the user through up to 5 questions if additional information is needed.
+It is important to preserve what was changed and why the change was made. Write `docs/changes/<datetime>_<slug>.md` according to the [Open Knowledge Foundation (OKF) change file format](https://github.com/GoogleCloudPlatform/knowledge-catalog/tree/main/okf). Attempt to derive all necessary information from information in the source code, but interview the user through no more than five questions if additional information is needed. Favor compliance with the OKF format over conformance to existing change files.
 
 Commit this change if the working tree is clean. If there are outstanding changes, skip the commit as they will be squashed in later steps.
 
