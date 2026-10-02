@@ -695,6 +695,11 @@ clink.onbeginedit(function ()
             else
                 -- Get the name of the repo
                 repo_name = git_dir:match("^.+\\([^\\]+)\\.git$")
+                    -- Worktree: <repo>\.git\worktrees\<worktree_name>
+                    or git_dir:match("\\%.git\\worktrees\\([^\\]+)$")
+                    -- Fallback: last path component
+                    or git_dir:match("([^\\/]+)[\\/]*$")
+                    or git_dir
 
                 -- Escape any potentially dangerous characters
                 repo_name = repo_name:gsub("[\"^&|<>]", "^%0")
