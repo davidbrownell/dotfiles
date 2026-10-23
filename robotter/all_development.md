@@ -17,6 +17,7 @@ Adhere to these principles when generating code comments or documentation.
 - Do not introduce documentation for code that is common or easily understood.
 - Explain why code was introduced, not what the code is doing.
 - Generate short, crisp documentation rather than verbose prose.
+- Do not generate files in `docs/changes` unless running the `prepare-pr` skill.
 
 # Static Analysis/Linting Errors
 Do not suppress static analysis/linting-style errors; attempt to address the problem instead. Consult the human if the problem cannot be properly addressed.
