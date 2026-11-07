@@ -101,6 +101,8 @@ def main(
     dotter(*dotter_args)
 
     # Run robotter
+    robotter("render", "global.md", "claude-code")
+
     for skill_dir in sorted((ROBOTTER_DIR / "skills").iterdir()):
         if skill_dir.is_dir():
             robotter("render_skill", f"skills/{skill_dir.name}", "claude-code")
