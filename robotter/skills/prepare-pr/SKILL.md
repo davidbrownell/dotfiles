@@ -16,7 +16,11 @@ Verify before doing anything else. Stop and report if any fail.
 - Inside a git work tree.
 - No rebase/merge/cherry-pick in progress (`.git/rebase-merge`, `.git/rebase-apply`, `.git/MERGE_HEAD` absent).
 - `origin` remote exists.
-- `commit_emojis` is on `PATH` (`command -v commit_emojis`). If it is missing, error out — do not substitute `uv run`, `uvx`, or a hardcoded emoji list.
+- `commit_emojis` is available. Resolve the invocation in this order and use the first that works:
+  1. `uv run commit_emojis` — installed as a dev dependency of the current project (`uv run commit_emojis --help` succeeds).
+  2. `commit_emojis` — on `PATH` (`commit_emojis --help`).
+
+  The resolved command is referred to as `<commit_emojis>` in the rest of the skill. If neither works, error out — do not substitute `uvx`, a hardcoded emoji list, or any other method.
 
 ## Step 1 — Gather state
 
@@ -67,10 +71,8 @@ Derive the commit message based on the information gathered in Step 4. The messa
 Never rely on a memorized emoji list; it changes as `commit_emojis` is updated. Always query it fresh:
 
 ```bash
-PYTHONIOENCODING=utf-8 commit_emojis DisplayJson
+PYTHONIOENCODING=utf-8 <commit_emojis> DisplayJson
 ```
-
-Invoke `commit_emojis` directly. Do not prefix it with `uv run` or `uvx` — it is installed on the machine. If it is not on `PATH`, stop and report that `commit_emojis` is unavailable; do not fall back to another invocation method.
 
 `PYTHONIOENCODING=utf-8` is required — the tool crashes with a `UnicodeEncodeError` when stdout uses a legacy codepage (common on Windows).
 
@@ -150,7 +152,7 @@ Each additional entry dilutes the subject and consumes characters, so keep the t
 Write the full message (subject, blank line, body) to a temp file, then let `commit_emojis` substitute the emoji:
 
 ```bash
-PYTHONIOENCODING=utf-8 commit_emojis Transform <message-file>
+PYTHONIOENCODING=utf-8 <commit_emojis> Transform <message-file>
 ```
 
 `Transform` rewrites `:alias:` tokens and passes the rest through unchanged, so the body is safe to include. Capture the transformed output — that is the final commit message. Verify the subject now starts with an emoji followed by `[<alias>]`; if the alias survived untransformed, it was not a valid alias, so re-select from the JSON.
