@@ -1,4 +1,4 @@
-<!-- python_development Version: 0.9.0 -->
+<!-- python_development Version: 0.10.0 -->
 
 {{ include_configuration("all_development.md") }}
 
@@ -30,13 +30,10 @@ Use these conventions when managing python dependencies:
 - Upgrade an existing dependency via `uv add --upgrade <package name>`.
 
 ## Testing
-Use these conventions when writing or exercising tests:
+Use these conventions when writing or exercising python tests:
 
 - Run tests on the command line via `uv run pytest`; do not attempt to change the directory before running the tests.
 - Never write tests for private functionality or class members (these are entities whose name begins with `_`).
-- All tests must assert functionality.
-- Never remove code to make tests pass.
-- Compare entire strings when asserting that strings are equal.
 - Use `textwrap.dedent` to compare strings with multiple lines.
 
 ## Imports
